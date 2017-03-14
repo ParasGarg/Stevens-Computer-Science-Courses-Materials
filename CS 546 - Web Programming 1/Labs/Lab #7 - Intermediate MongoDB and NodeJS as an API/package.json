@@ -1,0 +1,24 @@
+{
+  "name": "lab_7",
+  "version": "1.0.0",
+  "description": "CS-546-WS Lab-7 Solution",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Lab 7",
+    "Web Programming",
+    "CS 546",
+    "Spring 2017"
+  ],
+  "author": "Paras Garg",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "mongo": "^0.1.0",
+    "uuid": "^3.0.1"
+  }
+}
