@@ -48,7 +48,7 @@ public class Query_2 {
 				calendar.set(Calendar.YEAR, rs.getInt("year"));
 				calendar.set(Calendar.MONTH, rs.getInt("month") - 1);
 				calendar.set(Calendar.DAY_OF_MONTH, rs.getInt("day"));
-				
+									
 				Date dateObj = calendar.getTime();
 				String date = new SimpleDateFormat("MM/dd/yyyy").format(dateObj);
 
@@ -58,13 +58,20 @@ public class Query_2 {
 				sd.setProduct(rs.getString("prod"));
 				sd.setState(rs.getString("state"));
 				sd.setYear(rs.getInt("year"));
-				sd.setNJQty(rs.getInt("quant"));
-				sd.setNJDate(date);
-				sd.setNYQty(rs.getInt("quant"));
-				sd.setNYDate(date);
-				sd.setCTQty(rs.getInt("quant"));
-				sd.setCTDate(date);
-								
+				sd.setQty(rs.getInt("quant"));
+				sd.setDate(date);
+				
+				if(rs.getString("state").equalsIgnoreCase("NJ")) {
+					sd.setNJQty(rs.getInt("quant"));
+					sd.setNJDate(date);	
+				} else if(rs.getString("state").equalsIgnoreCase("NY")) {
+					sd.setNYQty(rs.getInt("quant"));
+					sd.setNYDate(date);	
+				} else if(rs.getString("state").equalsIgnoreCase("CT")) {
+					sd.setCTQty(rs.getInt("quant"));
+					sd.setCTDate(date);	
+				}
+	
 				// calculating average, minimum and maximum values for each customer
 				Calculate(sd);				
 			}
@@ -85,7 +92,7 @@ public class Query_2 {
 						+ String.format("%6s", ht.get(nextKey).getNYQty()) + "  " + String.format("%-10s", ht.get(nextKey).getNYDate()) + "  "
 						+ String.format("%6s", ht.get(nextKey).getCTQty()) + "  " + String.format("%-10s", ht.get(nextKey).getCTDate()));
 			}
-			
+						
 			// closing connection
 			conn.close();
 		} catch (SQLException ex) {
@@ -102,27 +109,28 @@ public class Query_2 {
 			key++;
 		} else {								// traversing hash table for comparison and modification
 			itr = ht.keys();
-			while(itr.hasMoreElements()) {
+			while(itr.hasMoreElements()) {		// iterating hash table
 				nextKey = (Integer) itr.nextElement();
 				
 				if (sd.getCustomer().equalsIgnoreCase(ht.get(nextKey).getCustomer()) && 
 						sd.getProduct().equalsIgnoreCase(ht.get(nextKey).getProduct())) {
 					addNewFlag = false;
-					
-					if(sd.getState().equalsIgnoreCase("NJ")) {
-						if (sd.getNJQty() > ht.get(nextKey).getNJQty() && sd.getYear() < 2009) {
-							ht.get(nextKey).setNJQty(sd.getNJQty());
-							ht.get(nextKey).setNJDate(sd.getNJDate());
+				
+					if(sd.getState().equalsIgnoreCase("NJ")) {			// checking for NJ
+						if (sd.getQty() > ht.get(nextKey).getNJQty() && sd.getYear() < 2009) {
+							ht.get(nextKey).setNJQty(sd.getQty());
+							ht.get(nextKey).setNJDate(sd.getDate());
 						}
-					} else if(sd.getState().equalsIgnoreCase("NY")) {
-						if (sd.getNYQty() < ht.get(nextKey).getNYQty() && sd.getYear() < 2009) {
-							ht.get(nextKey).setNYQty(sd.getNYQty());
-							ht.get(nextKey).setNYDate(sd.getNYDate());
+					} else if(sd.getState().equalsIgnoreCase("NY")) {	// checking for NY
+						if (((sd.getQty() > ht.get(nextKey).getNYQty() && ht.get(nextKey).getNYQty() == 0) || sd.getQty() < ht.get(nextKey).getNYQty())
+								&& sd.getYear() < 2009) {
+							ht.get(nextKey).setNYQty(sd.getQty());
+							ht.get(nextKey).setNYDate(sd.getDate());
 						}
-					} else if(sd.getState().equalsIgnoreCase("CT")) {
-						if (sd.getCTQty() < ht.get(nextKey).getNYQty()) {
-							ht.get(nextKey).setCTQty(sd.getCTQty());
-							ht.get(nextKey).setCTDate(sd.getCTDate());
+					} else if(sd.getState().equalsIgnoreCase("CT")) {	// checking for CT						
+						if ((sd.getQty() > ht.get(nextKey).getCTQty() && ht.get(nextKey).getCTQty() == 0) || sd.getQty() < ht.get(nextKey).getCTQty()) {
+							ht.get(nextKey).setCTQty(sd.getQty());
+							ht.get(nextKey).setCTDate(sd.getDate());
 						}
 					}					
 				}

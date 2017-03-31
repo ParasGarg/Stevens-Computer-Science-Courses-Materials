@@ -6,6 +6,9 @@ public class SalesData_Q2 {
 	private String state;
 	private int year;
 	
+	private int qty;
+	private String date;
+	
 	private int njQty;
 	private String njDate;
 	private int nyQty;
@@ -28,6 +31,14 @@ public class SalesData_Q2 {
 	
 	public int getYear() {
 		return year;
+	}
+	
+	public int getQty() {
+		return qty;
+	}
+	
+	public String getDate() {
+		return date;
 	}
 
 	public int getNJQty() {
@@ -72,6 +83,14 @@ public class SalesData_Q2 {
 		this.year = year;
 	}
 	
+	public void setQty(int quantity) {
+		this.qty = quantity;
+	}
+	
+	public void setDate(String date) {
+		this.date = date;
+	}
+	
 	public void setNJQty(int quantity) {
 		this.njQty = quantity;
 	}
@@ -94,5 +113,22 @@ public class SalesData_Q2 {
 	
 	public void setCTDate(String date) {
 		this.ctDate = date;
+	}	
+	
+	
+	// initializing values
+	public SalesData_Q2() {
+		customer = null;
+		product = null;
+		state = null;
+		year = 0;
+		qty = 0;
+		date = null;
+		njQty = 0;
+		njDate = null;
+		nyQty = 0;
+		nyDate = null;
+		ctQty = 0;
+		ctDate = null;
 	}
 }

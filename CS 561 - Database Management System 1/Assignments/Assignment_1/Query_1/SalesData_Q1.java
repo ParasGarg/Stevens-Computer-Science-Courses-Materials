@@ -1,4 +1,4 @@
-package assignment_1.query_1;
+package Assignment_1.Query_1;
 
 public class SalesData_Q1 {
 	private String customerName;
@@ -18,6 +18,10 @@ public class SalesData_Q1 {
 	
 	// getters
 	public String getCustomerName() {
+		if (customerName.equals("")) {
+			return "Null";
+		}
+		
 		return customerName;
 	}
 	
@@ -26,6 +30,10 @@ public class SalesData_Q1 {
 	}
 	
 	public String getMinProduct() {
+		if (minProduct.equals("")) {
+			return "Null";
+		}
+		
 		return minProduct;
 	}
 	
@@ -34,6 +42,10 @@ public class SalesData_Q1 {
 	}
 	
 	public String getMinState() {
+		if (minState.equals("  ")) {
+			return "N/A";
+		}
+		
 		return minState;
 	}
 	
@@ -42,6 +54,10 @@ public class SalesData_Q1 {
 	}
 	
 	public String getMaxProduct() {
+		if (maxProduct.equals("")) {
+			return "Null";
+		}
+		
 		return maxProduct;
 	}
 	
@@ -50,6 +66,10 @@ public class SalesData_Q1 {
 	}
 	
 	public String getMaxState() {
+		if (maxState.equals("  ")) {
+			return "N/A";
+		}
+		
 		return maxState;
 	}	
 	
@@ -67,7 +87,11 @@ public class SalesData_Q1 {
 		
 	// setters
 	public void setCustomerName(String customerName) {
-		this.customerName = customerName;
+		if (customerName.equals("")) {
+			this.customerName = "Null";
+		} else {
+			this.customerName = customerName;
+		}		
 	}
 	
 	public void setMinQty(int quantity) {

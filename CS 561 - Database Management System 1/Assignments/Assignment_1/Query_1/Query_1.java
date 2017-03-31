@@ -1,4 +1,4 @@
-package assignment_1.query_1;
+package Assignment_1.Query_1;
 
 // importing packages
 import java.sql.*;
@@ -38,7 +38,7 @@ public class Query_1 {
 			
 			// get query result to ResultSet rs
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT * FROM Sales");
+			ResultSet rs = stmt.executeQuery("SELECT * FROM sales");
 			
 			// traversing through each element
 			while (rs.next()) {
