@@ -22,4 +22,3 @@
 )	
 SELECT *
 FROM nj_sales NATURAL FULL JOIN ny_sales NATURAL FULL JOIN ct_sales
-ORDER BY CUST, PROD
