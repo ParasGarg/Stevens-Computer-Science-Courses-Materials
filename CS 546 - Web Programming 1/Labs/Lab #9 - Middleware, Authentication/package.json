@@ -1,0 +1,32 @@
+{
+  "name": "lab_9",
+  "version": "1.0.0",
+  "description": "CS-546-WS Lab-9 Solution",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Lab 9",
+    "Web Programming",
+    "CS 546",
+    "Spring 2017"
+  ],
+  "author": "Paras Garg",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^1.0.2",
+    "body-parser": "^1.17.1",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.3",
+    "cookie-session": "^2.0.0-beta.1",
+    "express": "^4.15.2",
+    "express-handlebars": "^3.0.0",
+    "express-session": "^1.15.2",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "path": "^0.12.7",
+    "uuid": "^3.0.1"
+  }
+}
