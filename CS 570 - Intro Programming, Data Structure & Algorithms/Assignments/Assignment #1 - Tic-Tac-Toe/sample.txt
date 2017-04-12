@@ -1,6 +1,0 @@
-playerCount:3#
-boardRows:6#
-boardCols:6#
-winSequence:3#
-playerTurn:0#
-playingBoard:0X0 0X5 2A0 2A2 5O0 5O5 #

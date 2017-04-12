@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" >
+        <title>User Login</title>
+        <meta name="description" content="This is a palindrome checker" >
+        <meta name="viewport" content="width=device-width, intial-scale=1" >
+        <link rel="stylesheet" href="/public/css/main.css">
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+        <script>
+            function submitForm() {
+                var usrname = document.getElementById("username").value;
+                var usrPwd = document.getElementById("password").value;
+
+                if (usrname.length > 0 && usrPwd.length > 0) {
+                    var form = document.getElementsByTagName("form");
+                    form[0].submit();
+                } else {
+                    alert("Please fill the form completly");
+                }
+            }
+        </script>
+    </head>
+
+    <body>
+        <main>
+            <header>
+                <h1>User Information</h1>
+            </header>
+            
+            <br />
+            <div>
+                {{{body}}}
+            </div>
+
+            <br />
+            <footer>
+                Developed by
+                <ul>
+                    <li>Name: Paras Garg</li>
+                    <li>CWID: 10498249</li>
+                    <li>Website: <a href="http://paras-garg.info" target="_blank">http://paras-garg.info</a></li>
+                </ul>
+            </footer>
+        </main>        
+    </body>
+</html>
