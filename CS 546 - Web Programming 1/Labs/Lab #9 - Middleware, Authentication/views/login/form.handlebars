@@ -1,0 +1,17 @@
+<article>
+    <h2>Login for details</h2>
+
+    <!-- form to check palindrome -->
+    <form action="/login" method="post" enctype='application/x-www-form-urlencoded' id="formId" name='usrLogin'>
+        <label for="username">Username</label>
+        <input id="username" name='username' type="text"><br/>
+        <label for="password">Password</label>
+        <input id="password" name='password' type="password"><br/>
+        <input type="button" id="btn" value="Login" onclick="submitForm()" />
+    </form>
+
+    <!-- error while login -->
+    <p class="error">
+        {{error}}
+    </p>
+</article>
