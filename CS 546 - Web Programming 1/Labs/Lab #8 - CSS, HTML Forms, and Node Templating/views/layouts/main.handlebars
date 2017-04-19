@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" >
+        <title>Palindrome Checker</title>
+        <meta name="description" content="This is a palindrome checker" >
+        <meta name="viewport" content="width=device-width, intial-scale=1" >
+        <link rel="stylesheet" href="/public/css/main.css">
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                // click on button submit
+                $("#btn").on('click', function() {
+                    var formData = document.getElementById("txt").value;
+                    
+                    if (formData.length > 0) {
+                        // send ajax
+                        $.ajax({
+                            url: '/',
+                            type : "POST",
+                            dataType : 'json',
+                            data : $("#formId").serialize(), // post data || get data
+                            success : function(result) {}
+                        })
+
+                        location.reload(); 
+                    } else {
+                        alert("Please enter value");
+                    }
+                    
+                });
+            });
+
+        </script>
+    </head>
+
+    <body>
+        <main>
+            <header>
+                <h1>Palindrome Checker</h1>
+            </header>
+
+            <div>
+                {{{body}}}
+            </div>
+
+            <footer>
+                <hr/>
+                <p>
+                    Developed by
+                    <ul>
+                        <li>Name: Paras Garg</li>
+                        <li>CWID: 10498249</li>
+                        <li>Website: http://paras-garg.info</li>
+                    </ul>
+                </p>
+            </footer>
+        </main>        
+    </body>
+</html>
