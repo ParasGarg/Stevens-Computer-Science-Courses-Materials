@@ -1,0 +1,125 @@
+{
+	"AWSTemplateFormatVersion": "2010-09-09",
+	"Description": "My AWS CloudFormation Template: Creates Amazon Linux AMI.",
+	"Parameters": {
+		"KeyName": {
+			"Description": "Name of an existing EC2 KeyPair to enable SSH access to the instance",
+			"Type": "AWS::EC2::KeyPair::KeyName",
+			"Default": "ParasGarg_AWS",
+			"ConstraintDescription": "must be the name of an existing EC2 KeyPair."
+		},
+		"InstanceType": {
+			"Description": "WebServer EC2 instance type",
+			"Type": "String",
+			"Default": "t2.micro",
+			"AllowedValues": ["t2.micro"],
+			"ConstraintDescription": "must be a valid EC2 instance type."
+		},
+		"SSHLocation": {
+			"Description": "The IP address range that can be used to SSH to the EC2 instances",
+			"Type": "String",
+			"MinLength": "9",
+			"MaxLength": "18",
+			"Default": "0.0.0.0/0",
+			"AllowedPattern": "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})",
+			"ConstraintDescription": "must be a valid IP CIDR range of the form x.x.x.x/x."
+		}
+	},
+	"Mappings": {
+		"AWSInstanceType2Arch": {
+			"t2.micro": {
+				"Arch": "HVM64"
+			}
+		},
+		"AWSInstanceType2NATArch": {
+			"t2.micro": {
+				"Arch": "NATHVM64"
+			}
+		},
+		"AWSRegionArch2AMI": {
+			"us-west-2": {
+				"HVM64": "ami-7172b611"
+			}
+		}
+	},
+	"Resources": {
+		"EC2Instance": {
+			"Type": "AWS::EC2::Instance",
+			"Properties": {
+				"InstanceType": {
+					"Ref": "InstanceType"
+				},
+				"SecurityGroups": [{
+					"Ref": "InstanceSecurityGroup"
+				}],
+				"KeyName": {
+					"Ref": "KeyName"
+				},
+				"ImageId": {
+					"Fn::FindInMap": ["AWSRegionArch2AMI",
+					{
+						"Ref": "AWS::Region"
+					},
+					{
+						"Fn::FindInMap": ["AWSInstanceType2Arch",
+						{
+							"Ref": "InstanceType"
+						},
+						"Arch"]
+					}]
+				}
+			}
+		},
+		"InstanceSecurityGroup": {
+			"Type": "AWS::EC2::SecurityGroup",
+			"Properties": {
+				"GroupDescription": "Enable SSH on 22 and HTTP on 80",
+				"SecurityGroupIngress": [{
+					"IpProtocol": "tcp",
+					"FromPort": "22",
+					"ToPort": "22",
+					"CidrIp": {
+						"Ref": "SSHLocation"
+					}
+				},
+				{
+					"IpProtocol": "tcp",
+					"FromPort": "80",
+					"ToPort": "80",
+					"CidrIp": {
+						"Ref": "SSHLocation"
+					}
+				}]
+			}
+		}
+	},
+	"Outputs": {
+		"InstanceId": {
+			"Description": "InstanceId",
+			"Value": {
+				"Ref": "EC2Instance"
+			}
+		},
+		"AZ": {
+			"Description": "Availability Zone",
+			"Value": {
+				"Fn::GetAtt": ["EC2Instance",
+				"AvailabilityZone"]
+			}
+		},
+		"PublicDNS": {
+			"Description": "Public DNSName",
+			"Value": {
+				"Fn::GetAtt": ["EC2Instance",
+				"PublicDnsName"]
+			}
+		},
+		"PublicIP": {
+			"Description": "Public IP address",
+			"Value": {
+				"Fn::GetAtt": ["EC2Instance",
+				"PublicIp"]
+			}
+		}
+	}
+}
