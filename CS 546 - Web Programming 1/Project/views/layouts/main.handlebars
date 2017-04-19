@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+    <head>
+		<!-- meta -->
+        <meta charset="utf-8" >
+        <meta name="viewport" content="width=device-width, intial-scale=1" >
+        <meta name="description" content="Online Grocery Store" >
+		<!-- title --> 
+        <title>Online Grocery Store</title>
+		<!-- stylesheets -->
+		<link rel="stylesheet" href="/public/css/bootstrap-3.3.7.css">
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="/public/css/alerts.css">		
+        <link rel="stylesheet" href="/public/css/main.css">		
+		<!-- scripts -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
+
+    <body>
+
+		<!-- header starts from here -->
+		<header>
+			<!-- wrapper class starts from here -->
+			<div class="container">
+				<!-- header navigation bar starts from here -->
+				<nav class="navbar navbar-default navbar-static-top">
+					<div>
+						<!-- Brand and toggle get grouped for better mobile display -->
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+								<span class="sr-only">Toggle Navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+							<a class="navbar-brand" href="/">Grocery Store</a>
+						</div>
+
+						<!-- Collect the nav links, forms, and other content for toggling -->
+						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<ul class="nav navbar-nav">
+							<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="#">Dairy Products</a></li>
+								<li role="separator" class="divider"></li>
+								<li><a href="#">Frozen Foods</a></li>
+								<li role="separator" class="divider"></li>
+								<li><a href="#">Bakery Products</a></li>
+							</ul>
+							</li>
+						</ul>
+						<form class="navbar-form navbar-left">
+							<div class="form-group">
+								<input type="text" class="form-control" placeholder="Search">
+							</div>
+							<button type="submit" class="btn btn-default">Submit</button>
+						</form>
+						<ul class="nav navbar-nav navbar-right">
+							<li><a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Cart</a></li>
+							<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Welcome User!<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="#"><i class="fa fa-cog" aria-hidden="true"></i>Account</a></li>
+								<li role="separator" class="divider"></li>
+								<li><a href="#"><i class="fa fa-credit-card-alt" aria-hidden="true"></i>Payment</a></li>
+								<li role="separator" class="divider"></li>
+								<li><a href="#"><i class="fa fa-google-wallet" aria-hidden="true"></i>Wallet</a></li>
+								<li role="separator" class="divider"></li>
+								<li><a href="#"><i class="fa fa-heart" aria-hidden="true"></i>Wish List</a></li>
+								<li role="separator" class="divider"></li>
+								<li><a href="#"><i class="fa fa-shopping-basket" aria-hidden="true"></i>Order History</a></li>
+								<li role="separator" class="divider"></li>
+								<li>
+									<form method="post" action="/user/logout">
+										<i class="fa fa-sign-out" aria-hidden="true"></i>
+										<input type="submit" value="Logout">
+									</form>
+								</li>
+							</ul>
+							</li>
+						</ul>
+						</div><!-- /.navbar-collapse -->
+					</div><!-- /.container-fluid -->
+				</nav>
+				<!-- header navigation bar end here -->
+			</div>
+			<!-- wrapper class ends here -->
+		</header>
+		<!-- header ends here -->
+		
+
+		<main>
+			<!-- wrapper class starts from here -->
+			<div class="container">
+                {{{ body }}}
+            </div>
+			<!-- wrapper class ends here -->
+		</main>
+
+		<!--footer start from here-->
+		<footer>
+				<div class="container">
+					<div class="row">
+					<div class="col-md-4 col-sm-6 footerleft ">
+						<h6>About Project</h6>
+						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley.</p>
+						<p><i class="fa fa-map-pin"></i>Stevens Institute of Technology, NJ</p>
+						<p><i class="fa fa-phone"></i>+1 (917) 861-6967</p>
+						<p><i class="fa fa-envelope"></i>pgagr2@stevens.edu</p>
+						
+					</div>
+					<div class="col-md-5 col-sm-6">
+						<h6>Contact Us</h6>
+						<ul class="footer-ul">
+						<li><a href="#"> Career</a></li>
+						<li><a href="#"> Privacy Policy</a></li>
+						<li><a href="#"> Terms & Conditions</a></li>
+						<li><a href="#"> Client Gateway</a></li>
+						<li><a href="#"> Ranking</a></li>
+						<li><a href="#"> Case Studies</a></li>
+						<li><a href="#"> Frequently Ask Questions</a></li>
+						</ul>
+					</div>
+					<div class="col-md-3 col-sm-6">
+						<h6>Follow Us</h6>
+						<div data-href="https://github.com/ParasGarg/Online-Grocery-Store" data-tabs="repository" data-height="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+							<blockquote cite="https://github.com/ParasGarg/Online-Grocery-Store"><a href="https://github.com/ParasGarg/Online-Grocery-Store">GitHub</a></blockquote>
+						</div>
+
+						<br/>
+						<h6>Subscribe Us</h6>
+						<form>
+							<div>
+								<input type="text" class="form-control" placeholder="Emai Id">
+							</div>
+							<button type="submit" class="btn btn-default">Submit</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</footer>
+		<!--footer start from here-->
+               
+    </body>
+</html>
