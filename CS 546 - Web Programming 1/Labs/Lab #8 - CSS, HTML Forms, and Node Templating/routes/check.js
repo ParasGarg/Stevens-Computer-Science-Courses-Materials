@@ -16,7 +16,7 @@ router.get('/:id', (req, res) => {
 // fetching all data
 router.get('/', (req, res) => {
     checkData.getAllCheck().then((checkPhrase) => {
-        res.render('checker/results', { check: checkPhrase })
+        res.render('checker/results', { check: checkPhrase });
     }).catch(() => {
         res.status(404).json({ error: "No data in our records" });
     });
@@ -28,12 +28,13 @@ router.post('/', (req, res) => {
 
     // checking null value
     if (!newPhrase.phrase) {
-        res.status(400).json({ error: "No phrase provided." });
+        res.status(400).send({ error: "No phrase provided." });
         return;
     }
 
     checkData.createCheck(newPhrase.phrase).then((checkPhrase) => {
-        res.json(checkPhrase);        
+        res.redirect("/");
+        //res.json(checkPhrase);        
     }).catch(() => {
         res.status(404).json({ error: "No valid inputs" });
     });

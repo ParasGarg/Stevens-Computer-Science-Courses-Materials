@@ -13,9 +13,9 @@ function isPalindrome(phrase) {
     for (var i = 0; i < len; i++) {
         let charCode = phrase.charCodeAt(i);
 
-        if(charCode >= 97 && charCode <= 122) {
+        if (charCode >= 97 && charCode <= 122) {
             str += phrase.charAt(i);
-        } else if(charCode >= 65 && charCode <= 90) {
+        } else if (charCode >= 65 && charCode <= 90) {
             charCode += 32 
             str += String.fromCharCode(charCode);
         }

@@ -1,10 +1,12 @@
 <article>
 
     <!-- form to check palindrome -->
-    <form action="/" method="post" enctype='application/x-www-form-urlencoded' id="formId" name='formName'>
+    <!-- form action="/" method="post" enctype='application/x-www-form-urlencoded' id="formId" name='formName' -->
+    <form action="/" method="post" enctype='application/json' name='formName'>
         <label for="txt">Check your phrase</label><br/>
         <textarea id="txt" name='phrase'></textarea><br/>
-        <input type="button" id="btn" value="Check" onclick="submitData()" />
+        <input type="submit" id="btn" value="Check" />
+        <!-- input type="button" id="btn" value="Check" onclick="submitData()" /-->
     </form>
 
     <!-- past results -->
@@ -19,3 +21,4 @@
         {{/each}}
     </ol>
 </article>
+application/json
