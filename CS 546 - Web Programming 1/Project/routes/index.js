@@ -1,26 +1,45 @@
-const adminRoutes = require('./admin');
-//const usersRoutes = require('./users');
+/* importing required files and packages */
+const passport = require('../config/passport-users');
+const paymentsRoutes = require('./payments');
+const productsRoutes = require('./products/products-dao');
+const supportsRoutes = require('./supports');
+const usersRoutes = require('./users');
 
-const routesMethod = (app) => {
-    
-    app.use("/$/", (req, res) => {      // home routes
-        res.render('index');
+// check user authenticity
+function isLoggedIn(req, res, next) {
+	if (req.isAuthenticated()) {
+        res.redirect('/');
+    } else {
+        return next();
+    }
+}
+
+const mainRoutes = (app) => {
+
+    /* home page routes */
+    app.use("/$/", (req, res) => {
+        res.render('index', {
+            mainTitle: "Welcome to",
+            user: req.user
+        });
     });
 
-    app.use("/admin", adminRoutes);     // admin routes
-//    app.use("/user", usersRoutes);      // user routes
+    /* customized routes */
+    //app.use("/payment", paymentsRoutes);    // payments routes
+    app.use("/product", productsRoutes);    // products routes
+    app.use("/support", supportsRoutes);    // supports routes
+    app.use("/user", usersRoutes);          // user routes
 
-    /* sub routes configuration */
-    const configUserRoutes = require("./users");
-    configUserRoutes(app);
-
-    app.use("*", (req, res) => {        // no page routes
-        res.render('alerts/error', { 
+    /* non existing page configuration */
+    app.use("*", (req, res) => {
+        res.render('alerts/error', {
+            mainTitle: "Page Not Found •",
             code: 404,
             message: `Page Not Found`,
-            url: req.originalUrl 
+            url: req.originalUrl,
+            user: req.user
         });
     });
 };
 
-module.exports = routesMethod;
+module.exports = mainRoutes;

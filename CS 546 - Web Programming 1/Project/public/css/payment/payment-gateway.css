@@ -1,0 +1,48 @@
+/* payment gateway stylesheet */
+.gateway { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;margin: 0 auto;padding: 2rem 0 3rem;text-align: center;width: 100%; }
+.gateway h1 { font-size: 3rem;font-weight: bold;margin-bottom: 2rem;text-align: center; }
+.gateway h2 { padding: 1.5rem 2rem; }
+.gateway p { font-size: 2rem; }
+.gateway label { font-size: 1.2rem;margin: 0 0 3px;padding: .5rem 1rem; }
+.gateway form .row { margin-bottom: 1rem; }
+.gateway p.msg.banner { font-size: 1.5rem;font-style: italic;font-weight: 400;margin-top: 0;margin-bottom: 2rem; }
+
+/* add-cash */
+.gateway.add-cash { width: 50%; }
+.gateway.add-cash h2 { padding: 0; }
+.gateway.add-cash .panel-title { cursor: text; }
+.gateway.add-cash i { text-align: left; }
+
+/* other dashboard features*/
+.gateway .panel-default { margin-bottom: 3rem; }
+.gateway .panel-heading { background-color: #eee;padding: 1.5rem 2rem;text-align: center; }
+.gateway .panel-heading a { text-decoration: none; }
+.gateway .panel-title { color: #23527f; }
+
+.gateway input[type="number"] { display: inline-block;width: 48%; }
+.gateway input[type="number"]:first-child { float: left;width: 48%; }
+.gateway input[type="number"]:last-child { float: right;width: 48%; }
+.gateway select.btn-default { text-align: left;width: 100%; }
+
+/**********/
+
+.gateway .row { margin: 0; }
+.gateway .desc-div { border-left: 1px solid #ddd;border-bottom: 1px solid #ddd;border-right: 1px solid #ddd;
+					 border-radius: 1px 1px 4px 4px;box-sizing: border-box;padding: 1rem 3rem; }
+.gateway .desc-div .row .row { margin: 1rem 0;text-align: left;}
+.gateway input[type="number"] { display: inline-block;width: 30%;}
+
+/* promo code */
+#promo-code-form input { display: inline-block;vertical-align: middle; }
+#promo-code-form input[type="text"] { width: 30%; }
+#promo-code-form input[type="button"] { width: 30%; }
+#promo-code-form .error { color: #ff0000; }
+#promo-code-form .success { color: #32cd32; }
+
+#payment-summary { text-align: left; }
+#payment-summary h3 { text-align: center;text-decoration: underline; }
+
+#payment-now { margin-top: 6rem; }
+#payment-now input { padding: 2rem 6rem; }
+
+
