@@ -82,6 +82,7 @@ public class Query_1 {
 			System.out.println("========  =======  =====  ========  ===============  ==============");
 			
 			itr = ht.keys();
+			
 			while(itr.hasMoreElements()) {
 				nextKey = (Integer) itr.nextElement();
 				

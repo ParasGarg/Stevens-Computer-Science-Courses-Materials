@@ -74,31 +74,31 @@ public class Query_2 {
 			System.out.println("========  =======  =====  ==========  =========");
 			
 			itr = ht.keys();
+			
 			while(itr.hasMoreElements()) {
 				nextKey = (Integer) itr.nextElement();
 				
 				for (int i = 0; i < 12; i++) {
-					if (ht.get(nextKey).getIsExist(i)) {
-					
+//					if (ht.get(nextKey).getIsExist(i)) {
 						if (i == 0) {	// checking for first month of an year
-							System.out.println(String.format("%-8s", ht.get(nextKey).getCustomer()) + "  " + String.format("%-7s", ht.get(nextKey).getProduct()) + "  " 
-									+ String.format("%5s", i+1) + "  " 
-									+ String.format("%10s", "<NULL>") + "  " + String.format("%9s", ht.get(nextKey).getMonthAvg(i+1)));
+								System.out.println(String.format("%-8s", ht.get(nextKey).getCustomer()) + "  " + String.format("%-7s", ht.get(nextKey).getProduct()) + "  " 
+										+ String.format("%5s", i+1) + "  " 
+										+ String.format("%10s", "<NULL>") + "  " + String.format("%9s", ht.get(nextKey).getMonthAvg(i+1)));
 						} else if (i == 11) {	// checking for last month of an year
-							System.out.println(String.format("%-8s", ht.get(nextKey).getCustomer()) + "  " + String.format("%-7s", ht.get(nextKey).getProduct()) + "  " 
-									+ String.format("%5s", i+1) + "  " 
-									+ String.format("%10s", ht.get(nextKey).getMonthAvg(i-1)) + "  " + String.format("%9s", "<NULL>"));
+								System.out.println(String.format("%-8s", ht.get(nextKey).getCustomer()) + "  " + String.format("%-7s", ht.get(nextKey).getProduct()) + "  " 
+										+ String.format("%5s", i+1) + "  " 
+										+ String.format("%10s", ht.get(nextKey).getMonthAvg(i-1)) + "  " + String.format("%9s", "<NULL>"));
 						} else {	// checking for other months
-							System.out.println(String.format("%-8s", ht.get(nextKey).getCustomer()) + "  " + String.format("%-7s", ht.get(nextKey).getProduct()) + "  " 
-									+ String.format("%5s", i+1) + "  " 
-									+ String.format("%10s", ht.get(nextKey).getMonthAvg(i-1)) + "  " + String.format("%9s", ht.get(nextKey).getMonthAvg(i+1)));
+								System.out.println(String.format("%-8s", ht.get(nextKey).getCustomer()) + "  " + String.format("%-7s", ht.get(nextKey).getProduct()) + "  " 
+										+ String.format("%5s", i+1) + "  " 
+										+ String.format("%10s", ht.get(nextKey).getMonthAvg(i-1)) + "  " + String.format("%9s", ht.get(nextKey).getMonthAvg(i+1)));
 						}
-					}
+//					}
 				}
 			}
-						
+			
 			// closing connection
-			conn.close();
+			conn.close();			
 		} catch (SQLException ex) {
 			System.out.println("Connection URL or username or password errors!");
 			ex.printStackTrace();

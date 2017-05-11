@@ -72,7 +72,6 @@ public class Query_3 {
 			itr = ht.keys();
 			while(itr.hasMoreElements()) {
 				nextKey = (Integer) itr.nextElement();
-
 				boolean isMinMonthPrinted = false;
 				int targetAchieved = 0;
 				for (int i = 0; i < 12; i++) {
