@@ -1,0 +1,50 @@
+<!-- stylesheet -->
+<link rel="stylesheet" href="/public/css/payment/payment-confirmation.css">
+<!-- script -->
+<script>
+	(function(window, location) {
+		history.replaceState(null, document.title, location.pathname+"#!/history");
+		history.pushState(null, document.title, location.pathname);
+
+		window.addEventListener("popstate", function() {
+			if(location.hash === "#!/history") {
+				history.replaceState(null, document.title, location.pathname);
+				setTimeout( () => {
+					location.reload();
+				},0);
+			}
+		}, false);
+	}(window, location));
+</script>
+
+<!-- body -->
+<div class="confirmation">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+
+				<article>
+					<h2>Hey {{ user.name }}, you're all set!</h2>
+					<div class="row">
+						<i class="fa fa-check-circle" aria-hidden="true"></i>
+					</div>
+
+					<div class="row">
+						{{#if orderId }}
+							<p>
+								Your order has been placed successfully!
+							</p>
+							<label>Order #{{ orderId }} </label><br/>
+						{{else}}
+							<p>
+								We have received your payment of ${{amount}}!
+							</p>
+						{{/if}}
+						<label>Transaction #{{ transactionId }} </label>
+					</div>
+				</article>
+
+			</div>
+		</div>
+	</div>
+</div>

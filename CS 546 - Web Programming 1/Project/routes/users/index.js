@@ -1,28 +1,34 @@
-/* users actions */
-const getUser = require('./action/info');
-const newUser = require('./action/new');
-const updateUser = require('./action/update');
+/* importing required files and packages */
+const express = require('express');
+const usersRouter = express.Router();
 
-/* users access */
-const loginUser = require('./access/login');
-const logoutUser = require('./access/logout');
+/* users authentication */
+usersRouter.use("/login", require('./auth/user-login-account'));					// url: ~/user/login
+usersRouter.use("/logout", require('./auth/user-logout-account'));					// url: ~/user/logout
+usersRouter.use("/forget-password", require('./auth/user-forget-password'));		// url: ~/user/forget-password
 
-/* users route methods */
-const usersRoutes = (app) => {
-	app.use("/user/info", getUser);				// get user information
-	app.use("/user/new", newUser);				// create new user
-	app.use("/user/update", updateUser);		// update user
+/* users data access objects */
+usersRouter.use("/new", require('./dao/create-new-user'));							// url: ~/user/new
+usersRouter.use("/update/info", require('./dao/update-user-info'));					// url: ~/user/update/info
+usersRouter.use("/update/card", require('./dao/update-user-card'));					// url: ~/user/update/card
+usersRouter.use("/update/wallet", require('./dao/update-user-wallet'));				// url: ~/user/update/wallet
 
-	app.use("/user/login", loginUser);			// user login
-	app.use("/user/logout", logoutUser);		// user logout
+/* users personal settings */
+usersRouter.use("/dashboard", require('./gui/user-dashboard'));						// url: ~/user/dashboard
+usersRouter.use("/dashboard/account", require('./gui/user-account'));				// url: ~/user/dashboard/account
+usersRouter.use("/dashboard/cart", require('./gui/user-cart'));						// url: ~/user/dashboard/cart
+usersRouter.use("/dashboard/payments", require('./gui/user-card'));					// url: ~/user/dashboard/payment
+usersRouter.use("/dashboard/wallet", require('./gui/user-wallet'));					// url: ~/user/dashboard/wallet
 
-	app.use("*", (req, res) => {                // no page routes
-        res.render('alerts/error', { 
-            code: 404,
-            message: `Page Not Found`,
-            url: req.originalUrl 
-        });
-    });
-};
+/* non existing page configuration */
+usersRouter.use("*", (req, res) => {
+	res.render('alerts/error', {
+		mainTitle: "Page Not Found •",
+		code: 404,
+		message: `Page Not Found`,
+		url: req.originalUrl,
+		user: req.user
+	});
+});
 
-module.exports = usersRoutes;
+module.exports = usersRouter;
