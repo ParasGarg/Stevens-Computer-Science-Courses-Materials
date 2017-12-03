@@ -36,8 +36,8 @@ def getRestaurantUsername(restaurantUrl):
 # function to parse the restaurant cuisine     
 
 #function to scrap restatuarant names and url from yelp
-def restaurantsListScrapper(restaurantCount, domain, cuisine, location):
-    restaurantsList = open('restaurantsList.txt', 'w') #output file
+def restaurantsListScrapper():
+    restaurantsList = open(dataPath + 'restaurantsList.txt', 'w') #output file
     for page in range(0, restaurantCount):
         if (page % 10 == 0):
             srcUrl = domain + "/search?find_desc=" + cuisine + "&find_loc=" + location + "&start=" + str(page);
@@ -69,9 +69,17 @@ def restaurantsListScrapper(restaurantCount, domain, cuisine, location):
     
 # main function
 if __name__ == '__main__':
+    global restaurantCount
+    global domain
+    global cuisine
+    global location
+    global dataPath
+    
     restaurantCount = 150 #number of restuarants to scrap
     domain = "https://www.yelp.com" #website domain name
     cuisine = "Restaurants+-+American" #type of cuisine restaurant offers
     location = "New+York%2C+NY" #location of the restaurant
+
+    dataPath = "F:\\Github\\Context-Extraction\\Data\\"
     
-    restaurantsListScrapper(restaurantCount, domain, cuisine, location)
+    restaurantsListScrapper()

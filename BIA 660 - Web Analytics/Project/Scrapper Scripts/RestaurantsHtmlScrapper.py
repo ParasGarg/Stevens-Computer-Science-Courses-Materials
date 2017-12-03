@@ -28,8 +28,8 @@ def getReviewPageCount(url):
     response=requests.get(url, headers = { 'User-Agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36', })
     html = response.content #get the html              
     
-    soup = BeautifulSoup(html.decode('ascii', 'ignore'),'lxml') #parse the html 
-    page = soup.find('div', {'class':re.compile('page-of-pages arrange_unit arrange_unit--fill')}) #get maximum pages
+    htmlParser = BeautifulSoup(html.decode('ascii', 'ignore'),'lxml') #parse the html into beautiful soup
+    page = htmlParser.find('div', {'class':re.compile('page-of-pages arrange_unit arrange_unit--fill')}) #get maximum pages
     
     page = str(page.text)
     page = page.strip().split()
@@ -38,12 +38,11 @@ def getReviewPageCount(url):
     return page
 
 #function to scrap restatuarant names and url from yelp
-def restaurantsHtmlScrapper(restaurantsListFile):
+def restaurantsHtmlScrapper(restaurantsListFile, path):
     urlList = getRestaurantsUrl(restaurantsListFile) #get list of restaurants urls
     usernameList = getRestaurantUsername(restaurantsListFile) #get list of restaurants usernames
     restaurantsCount = len(usernameList)
     
-    path = "F:\\Github\\Context-Extraction\\Restaurants\\Scrapped Data\\NYC\\American\\"  
     index = 0
     while index < restaurantsCount: #foreach restaurant
         html = None
@@ -70,7 +69,7 @@ def restaurantsHtmlScrapper(restaurantsListFile):
     
             if not html: continue #couldn't get the page, ignore
             
-            htmlParser = BeautifulSoup(html.decode('ascii', 'ignore'), 'lxml') # parse the html
+            htmlParser = BeautifulSoup(html.decode('ascii', 'ignore'), 'lxml') # parse the html into beautiful soup
             restaurantsHtml.write(str(htmlParser)) #htmlParser.prettify() for prettiness
             restaurantsHtml.close() #close the file
         
@@ -78,5 +77,6 @@ def restaurantsHtmlScrapper(restaurantsListFile):
 
 # main function
 if __name__ == '__main__':
-    restaurantsListFile = "restaurantsList.txt"
-    restaurantsHtmlScrapper(restaurantsListFile)
+    restaurantsListFile = "F:\\Github\\Context-Extraction\\Restaurants List\\restaurantsList.txt" #file and its location
+    restaurantsDataPath = "F:\\Github\\Context-Extraction\\Data\\NYC\\American\\" #base path to save the scrapped data
+    restaurantsHtmlScrapper(restaurantsListFile, restaurantsDataPath)
